@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Clock</title>
+    <style>
+        body{
+            background-color: #232222;
+            box-sizing: border-box;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .clock-div{
+            width: 400px;
+            height: 100px;
+            font-size: 55px;
+            background-color: #0d2217;
+            color: whitesmoke;
+            box-shadow:  0px 0px 2px 1.5px rgb(180, 213, 10);
+            /* padding: 20px; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 8px;
+
+            position: relative;
+
+        }
+        .clock-div::before{
+            position: absolute;
+            content: "";
+            width: 70%;
+            height: 6px;
+            border-radius: 5px;
+            bottom: -8px;
+            background-color: rgb(180, 213, 10) ;
+            box-shadow:  0px 0px 2px 1.5px rgb(180, 213, 10);
+        }
+        .clock-div::after{
+            position: absolute;
+            content: "";
+            width: 110%;
+            height: 0.0001px;
+            border-radius: 70%;
+            bottom: -18px;
+            background-color: rgb(180, 213, 10);
+            box-shadow:  0px 0px 15px 3px rgb(180, 213, 10);
+
+        }
+    </style>
+</head>
+<body>
+    <div class="clock-div">
+        <!-- <div class="outer"> -->
+            <p id="clock">Hiii</p>
+        <!-- </div> -->
+    </div>
+
+    <script>
+        const putTime = document.getElementById("clock");
+        // putTime.innerText = "11:01:55 AM";
+
+        function updateTime(){
+            const curTime = new Date().toLocaleTimeString().toUpperCase();
+            putTime.innerText = curTime;
+        }
+        setInterval(updateTime);
+
+
+    </script>
+
+
+</body>
+</html>

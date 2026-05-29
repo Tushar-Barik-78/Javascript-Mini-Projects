@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Gradient Project</title>
+    <style>
+        
+        body{
+            height: 100vh;
+            width: 100%;
+            background-image: linear-gradient(to right,rgb(92,145,229),rgb(152,63,198));
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        section{
+            width: 25%;
+
+            text-align: center;
+            .btnDiv{
+                display: flex;
+                gap:50px;
+                justify-content: center;
+                & #myBtn1{
+                    background-color: #051937;
+                    color: white;
+                    
+                }
+                & #myBtn2{
+                    background-color: #a7da0c;
+
+                }
+            }
+            .copyCode{
+                /* width: 100%; */
+                padding: 20px;
+                color: aliceblue;
+                font-size: 18px;
+                text-align: left;
+                background-color: rgba(186, 236, 236, 0.2);
+                border-left: 2px solid;
+            }
+            h2{
+                color: #fff;
+                font-size: 18px;
+            }
+            
+        }
+
+        button{
+            display: inline-block;
+            padding: 10px 30px;
+            border-radius: 20px;
+            box-shadow:  2px 2px 5px 2px rgb(37, 35, 35);
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <div class="btnDiv">
+            <button id="myBtn1">#051937</button>
+            <button id="myBtn2">#008793</button>
+        </div>
+        <h2>Copy your code here</h2>
+        <div class="copyCode">
+            background-image: linear-gradient(to right, rgb(92,145,229), rgb(152,63,198))
+        </div>
+    </section>
+
+
+
+
+    <script>
+        let btn1 = document.getElementById("myBtn1");
+        let btn2 = document.getElementById("myBtn2");
+        let copyDiv = document.querySelector(".copyCode");
+        // console.log(copyDiv.textContent);
+        
+        var rgb1 = "#000";
+        var rgb2 = "#fff";
+
+        const hexColors = ()=>{
+            let HexaValue = "0123456789abcdef";
+            // console.log(HexaValue[12]);
+
+            let BtnColor = "#";
+            for(let i = 0; i < 6; i++) {
+                BtnColor += String(HexaValue[Math.round(Math.random()*15)]);
+                
+            }
+            // console.log(Btn1Color);
+
+            return BtnColor;
+            
+        }
+        
+        const handleBtn1 = ()=>{
+             rgb1= hexColors();
+            // const rgb2= hexColors();
+            // console.log(rgb1);
+            document.body.style.backgroundImage = `linear-gradient(to right, ${rgb1}, ${rgb2})`
+            
+            document.querySelector(".copyCode").textContent = `backgroundImage = linear-gradient(to right, ${rgb1}, ${rgb2})`;
+
+            btn1.textContent = `${rgb1}`
+
+            btn1.style.backgroundColor = `${rgb1}`;
+            btn2.style.backgroundColor = `${rgb2}`;
+            
+        }
+        const handleBtn2 = ()=>{
+            // const rgb1= hexColors();
+            rgb2= hexColors();
+            // console.log(rgb2);
+            document.body.style.backgroundImage = `linear-gradient(to right, ${rgb1} , ${rgb2})`
+            document.querySelector(".copyCode").textContent = `backgroundImage = linear-gradient(to right, ${rgb1}, ${rgb2})`;
+            btn2.textContent = `${rgb2}`
+            
+            btn1.style.backgroundColor = `${rgb1}`;
+            btn2.style.backgroundColor = `${rgb2}`;
+        }
+
+        btn1.addEventListener("click",handleBtn1);
+        btn2.addEventListener("click",handleBtn2);
+
+        copyDiv.addEventListener("click",()=>{
+            navigator.clipboard.writeText(copyDiv.textContent);
+            alert("code copied");
+        })
+        
+    </script>
+</body>
+</html>

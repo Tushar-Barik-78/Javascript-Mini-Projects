@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Todo App</title>
+
+    <style>
+        body {
+            background-image: linear-gradient(135deg, rgb(75, 205, 175), rgb(53, 99, 88), rgb(73, 86, 229));
+            /* color: white; */
+            /* font-size: 24px; */
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-section {
+
+            width: 540px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.603);
+            box-shadow: 0px 0px 5px 3px #4f0d03e7;
+            border-radius: 25px;
+            padding: 30px;
+
+            margin: 70px;
+
+            /* margin: 70px auto; */
+            & #inputField {
+
+                display: flex;
+                justify-content: space-between;
+                width: 80%;
+                margin: 0px 2rem;
+                background-color: #e2e2e2;
+                /* margin: 0px 20px; */
+                border-radius: 25px;
+                margin-bottom: 30px;
+
+                & #inputValue {
+                    border-radius: 25px;
+                    /* box-shadow: 0 0 2px 0.5px rgb(162, 123, 123); */
+                    border: none;
+                    outline: none;
+                    max-width: 50%;
+                    display: inline-block;
+                    padding: 5px 20px;
+                    font-size: 18px;
+                    margin-right: 1.2rem;
+                    background: transparent;
+                }
+            }
+
+        }
+
+        button {
+            font-size: 14px;
+            font-weight: 600;
+            /* border: none; */
+            padding: 10px 30px;
+            display: inline-block;
+            border-radius: 25px;
+            background-color: #9824eb;
+            color: white;
+            border: 2px solid #9824eb;
+            transition: all linear 0.3s;
+        }
+
+
+
+
+        .todo-list-items {
+            width: 100%;
+
+            /* border: 2px black solid; */
+            & div {
+                height: 40px;
+                width: 80%;
+                margin: 1px auto;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px;
+
+                & p {
+                    max-width: 280px;
+                    font-size: 18px;
+                    cursor: pointer;
+                    position: relative;
+                    padding: 12px 8px 12px 50px;
+
+                    &::before {
+                        content: "";
+                        width: 20px;
+                        height: 20px;
+                        position: absolute;
+                        background-image: url(unchecked.png) ;
+                        border-radius: 50%;
+                        background-size: cover;
+                        background-position: center;
+                        left: 8px;
+                        top: 12px;
+                    }
+                }
+
+                button {
+                    background-color: #eb3333;
+                    border: 2px rgb(146, 27, 27) solid;
+
+                    &:hover {
+                        background-color: transparent;
+                        border: 2px red solid;
+                    }
+                }
+            }
+        }
+
+        .checked {
+            text-decoration-line: line-through;
+            position: relative;
+
+            
+            &::before {
+                background-image: url(checked.png) !important;
+            }
+        }
+
+        button:hover {
+            color: black;
+            background-color: transparent;
+            /* border: 2px solid #9824eb; */
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="hero-section">
+        <h1>Todo List</h1>
+        <div id="inputField">
+            <input type="text" id="inputValue" placeholder="List your todo">
+            <button id="btn">Add Todo</button>
+
+        </div>
+
+        <section class="todo-list-items">
+            <!-- <div>
+
+                <p>Task1</p><button>Delete</button>
+            </div>
+            <div>
+
+                <p class="checked">Task1</p><button>Delete</button>
+            </div>
+            <div>
+                <p>Task1</p><button>Delete</button>
+            </div> -->
+
+
+
+        </section>
+    </div>
+
+
+    <script>
+
+
+
+        // const putData = document.querySelector(".todo-list-items");
+        // const getData = document.getElementById("inputValue");
+
+        // // localStorage.removeItem("todo-local-data");
+
+        // let todoArr = JSON.parse(localStorage.getItem("todo-local-data")) || [];
+        // // console.log(typeof todoArr);
+
+        // function createDiv(value){
+        //     const newDiv = document.createElement("div");
+        //     putData.append(newDiv);
+        //     newDiv.innerHTML = `<p>${value}</p><button class="removeBtn">Delete</button>`;
+        // }
+
+        // const getLocalData = ()=>{
+        //     todoArr.forEach((value,index) => {
+        //         createDiv(value);
+        //     });
+        // }
+        // getLocalData();
+
+
+        // const addData = () =>{
+        //     const data = getData.value.trim();
+        //     // console.log( todoArr);
+        //     // console.log(todoArr.includes(data));
+
+        //     if(data != "" && !todoArr.includes(data)){
+        //         todoArr.push(data);
+        //         localStorage.setItem("todo-local-data",JSON.stringify( todoArr));
+        //         createDiv(data);
+        //     }
+
+        //     getData.value = "";
+        // }
+
+
+        // document.getElementById("btn").addEventListener("click",()=>{
+        //     addData();
+        // })
+
+
+        // putData.addEventListener("click",(e)=>{
+        //     console.log( e.target.tagName);
+
+        //     if(e.target.tagName === "BUTTON"){
+        //         // deleteDiv(e);
+        //         console.log(e.target);
+        //         e.target.parentElement.remove();
+
+        //     }else{
+        //         e.target.classList.toggle("checked");
+        //         // console.log(e);
+
+        //     }
+        //     saveData();
+
+        // })
+
+
+
+        const getData = document.getElementById("inputValue");
+        const putData = document.querySelector(".todo-list-items");
+
+
+        // creating new div and put it into the parent list
+        const putDiv = (data) => {
+            console.log(data);
+            const newDiv = document.createElement("div");
+
+            const isChecked = data.includes("*");
+            const cleanData = data.replace("*","");
+
+
+            newDiv.innerHTML = `<p class="${isChecked?'checked':''}">${cleanData}</p><button id="removeBtn">Delete</button>`;
+            putData.append(newDiv);
+        }
+
+        // set the array with previously present data or nothing
+        let todoArr = JSON.parse(localStorage.getItem("MyTodoData")) || [];
+
+        // loads all the data for first time
+        function getLocalData() {
+            todoArr.forEach((data) => {
+                putDiv(data);
+            });
+        }
+        getLocalData();
+
+        // add the data on clicking the button
+        const addData = () => {
+            const data = getData.value.trim();
+
+            if (data != "" && !todoArr.includes(data)) {
+                putDiv(data);
+                todoArr.push(data);
+                localStorage.setItem("MyTodoData", JSON.stringify(todoArr));
+            }
+            getData.value = "";
+        }
+
+
+        // delete operation when delete Btn is clicked
+        function deleteData(e) {
+            const para_Data = e.target.previousElementSibling.textContent;
+            // console.log(para_Data);
+
+            e.target.parentElement.remove();
+
+            todoArr = todoArr.filter((value) => {
+                         return value != para_Data && para_Data+"*" != value;
+            })
+
+            // console.log(todoArr);
+            localStorage.setItem("MyTodoData", JSON.stringify(todoArr))
+
+
+        }
+
+        // Cut operation when <p> is clicked
+        function cutData(e) {
+            e.target.classList.toggle("checked");
+
+            const cut_Data = e.target.textContent;
+            console.log(cut_Data);
+
+
+            todoArr = todoArr.map((value)=>{
+                
+                if(value === cut_Data){
+                    return value.includes("*") ? value.replace("*", "") : value + "*";
+                }else if(cut_Data+"*" == (value)){
+                    return value.replace("*", "") ;
+                }
+                return value;
+            })
+            console.log(todoArr);
+            localStorage.setItem("MyTodoData", JSON.stringify(todoArr))
+
+            
+        }
+
+        // To click any place inside list div
+        putData.addEventListener("click", (e) => {
+            // console.log(e.target.tagName);
+
+            const tag = e.target.tagName;
+            if (tag === "BUTTON") {
+                deleteData(e);
+            } else if (tag === "P") {
+                // console.log(e.target.parentElement);
+                cutData(e);
+
+            }
+
+        })
+
+        document.getElementById("btn").addEventListener("click", () => {
+            addData();
+        })
+
+
+    </script>
+</body>
+
+</html>

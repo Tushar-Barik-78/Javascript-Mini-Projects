@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Application</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <section class="hero">
+        <form class="search">
+            <!-- <figure>
+                <img src="white-search.png" alt="search-image">
+            </figure> -->
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input class="input" type="text" placeholder="search your city...">
+        </form>
+        <section class="main-section">
+            <p id="location"></p>
+            <p id="time"></p>
+            <div id="wea-type"></div>
+            <div id="wea-image" ></div>
+            <div id="wea-temp"></div>  <!-- 278&#176 -->
+            <p id="wea-minMax"></p>   <!--min:277&#176 Min:279&#176-->
+        </section>
+
+        <section class="data-section">
+            <div class="data">
+                <i class="fa-solid fa-temperature-low"></i>
+                <div>
+                    <p>Feels Like</p>
+                    <p id="feels">15&#176</p>
+                </div>
+            </div>
+            <div class="data">
+                <i class="fa-solid fa-droplet"></i>
+                <div>
+                    <p>Humidity</p>
+                    <p id="humidity">34&#176</p>
+                </div>
+            </div>
+            <div class="data">
+                <i class="fa-solid fa-wind"></i>                
+                <div>
+                    <p>Wind</p>
+                    <p id="wind">15&#176</p>
+                </div>
+            </div>
+            <div class="data">
+                <i class="fa-solid fa-recycle"></i>
+                <div>
+                    <p>Pressure</p>
+                    <p id="pressure">15&#176</p>
+                </div>
+            </div>
+        </section>
+    </section>
+
+
+    <script src="index.js">
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Stop Watch</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background-color: rgb(29, 29, 38);
+            font-family: system-ui;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+        .Time-div{
+            margin: 30px;
+            min-height: 600px;
+                width: 400px;
+                background-color: #312f45;
+            padding: 20px;
+            border-radius: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            gap: 20px;
+
+        }
+        .timer{
+            height: 150px;
+            width: 100%;
+            background-color: #101420;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content:center;
+            p{
+                font-size: 110px;
+                color: aqua;
+                font-weight: 300;
+                font-family:  Tahoma, Geneva, Verdana, sans-serif;
+            }
+        }
+        .btns{
+            display: grid;
+            width: 90%;
+            grid-template-columns: repeat(2,1fr);
+            gap: 10px;
+        
+            button{
+                
+                display: block;
+                width: 100%;
+                padding: 8px 30px;
+                font-size: 18px;
+                color: #312f45;
+                border-radius: 50px;
+                outline: none;
+                background-color: #ccf2f6;
+                border: 2px solid rgb(245, 215, 221);
+                transition: all 0.3s ease-in;
+                &:hover{
+                    background-color: transparent;
+                    color: rgb(215, 191, 57);
+                    border: 2px solid rgb(221, 241, 134) ;
+
+                }
+            }
+        }
+
+        .putTime{
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            gap: 10px;
+            p{
+                font-size: 20px;
+                color: rgb(173, 228, 255);
+                font-weight: 600;
+                display: inline-block;
+            }
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <div class="Time-div">
+        <div class="timer">
+            <p id="put">0</p>
+        </div>
+        <div class="btns">
+            <button id="start">Start</button>
+            <button id="reset">Reset</button>
+            <button id="stop">Stop</button>
+            <button id="gettime">getTime</button>
+            <button id="clear">Clear</button>
+        </div>
+        <div class="putTime">         
+        </div>
+    </div>
+
+    <script>
+
+        const putValue = document.getElementById("put");
+        const putTime = document.querySelector(".putTime");
+        let count = 0;
+        let intervalId ;
+        
+        const startCount = ()=>{
+            intervalId =  setInterval(() =>{
+            count += 0.1;
+            putValue.textContent = count.toFixed(1);
+            
+            },100);
+        }
+
+        // to reset 1st stop the timer and make the count to 0 and show 0
+        const resetCount = () =>{
+            clearInterval(intervalId);
+            count =0;
+            putValue.textContent = count;
+        }
+
+        //  stop the interval apply to start the timer --> using interval id
+        const stopCount = ()=>{
+            getCount();
+            clearInterval(intervalId);
+        }
+
+        const getCount = () =>{
+            const newDiv = document.createElement("p");
+            newDiv.innerHTML = `The stop Time is ${count.toFixed(1)}`;
+            putTime.append(newDiv);
+        }
+
+        const clearCount = () => {
+            resetCount();
+            putTime.innerHTML ="";
+        }
+
+
+        document.getElementById("start").addEventListener("click",startCount);
+        document.getElementById("reset").addEventListener("click",resetCount);
+        document.getElementById("stop").addEventListener("click",stopCount);
+        document.getElementById("gettime").addEventListener("click",getCount);
+        document.getElementById("clear").addEventListener("click",clearCount);
+
+
+
+
+
+        
+
+    </script>
+</body>
+</html>

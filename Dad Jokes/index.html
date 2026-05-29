@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dad Jokes</title>
+    <style>
+        body{
+            background-color: rgb(15, 14, 14);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+
+        }
+        .container{
+            padding: 30px;
+            width: 500px;
+            min-height: 150px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px 2px white;
+            display: inherit;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            h1{
+                font-size: 36px;
+                font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif ;
+
+            }
+            #fetchCode{
+                display: inline-block;
+                background-color: yellow;
+                width: 200px;
+                height: 50px;
+                border-radius: 50px;
+                font-size: 24px;
+            }
+            .api_body{
+                font-size: 24px;
+                /* margin: auto; */
+                margin: 30px auto;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Dad Jokes!</h1>
+        <section class="api_body"></section>
+        <Button id="fetchCode">Get A Joke</Button>
+    </div>
+
+
+    <script>
+        const apiBody = document.querySelector(".api_body");
+        // const apiUrl = "https://jsonplaceholder.typicode.com/posts/1/";
+        // const fetchData = ()=>{
+        //     fetch(apiUrl).then((msg)=>{
+        //         console.log( msg);
+                
+        //         return (msg.json());
+                
+        //     }).then((msg)=>{
+        //         console.log(msg);
+        //         console.log(msg.title);
+        //         apiBody.innerText = msg.title;
+        //     })
+        //     .catch((msg)=>{
+        //         console.log(msg);
+                
+        //     })
+        // }
+
+
+        const apiUrl = "https://icanhazdadjoke.com/";
+        const fetchData = () =>{
+            
+            // console.log(fetch(apiUrl));
+            fetch(apiUrl,{
+                headers:{Accept : "application/json"}
+            }).then((msg)=>{
+                console.log(msg);
+                return msg.json();
+                
+            })
+            .then((msg)=>{
+                console.log(msg.joke);
+                apiBody.innerText = msg.joke;
+                
+            })
+            .catch((msg)=>{
+                console.log(msg);
+                
+            })
+            
+        }
+        
+        fetchData();
+
+        document.getElementById("fetchCode").addEventListener("click",fetchData);
+        
+    </script>
+</body>
+</html>
